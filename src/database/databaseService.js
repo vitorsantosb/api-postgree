@@ -4,22 +4,22 @@ require("dotenv").config();
 let connection = null;
 
 async function init() {
-  return new Promise((res, rej) => {
-    connection = new Pool({
-      user: process.env.DB_USER,
-      host: process.env.DB_HOST,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME,
-      port: process.env.DB_PORT,
-    });
+    return new Promise((res, rej) => {
+        connection = new Pool({
+            user: process.env.DB_USER,
+            host: process.env.DB_HOST,
+            password: process.env.DB_PASSWORD,
+            database: process.env.DB_NAME,
+            port: process.env.DB_PORT,
+        });
 
-    connection.connect(function (err) {
-      if (err) {
-        return rej(err);
-      }
-      return res();
+        connection.connect(function(err) {
+            if (err) {
+                return rej(err);
+            }
+            return res();
+        });
     });
-  });
 }
 
 /**
@@ -30,14 +30,14 @@ async function init() {
  * @returns
  */
 async function execute(query, values = []) {
-  return new Promise((res, rej) => {
-    connection.query(query, values, function (err, result) {
-      if (err) {
-        return rej(err);
-      }
-      return res(result);
+    return new Promise((res, rej) => {
+        connection.query(query, values, function(err, result) {
+            if (err) {
+                return rej(err);
+            }
+            return res(result);
+        });
     });
-  });
 }
 
 module.exports = { init, execute };

@@ -1,5 +1,5 @@
 const http = require("http");
-const DatabaseService = require("./routes/infra/databaseService.js.js.js");
+const DatabaseService = require("./routes/infra/databaseService.js");
 const app = require("./routes/router/postRouter.js");
 
 async function inicialize() {
